@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>English Premier League 2014-15 Fantasy Stats for Geeks</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+  <link rel="stylesheet" href="css/app.css"/>
+
+  <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+  <ul class="menu">
+    <li><a href="#/players">All Players</a></li>
+    <li><a href="#/all">Raw Data</a></li>
+    <li>Stats Last Updated: 8/24/14 5:29 PM EST</li>
+  </ul>
+
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">English Premier League Fantasy Stats for Geeks</a>
+        </div>
+          <ul class="nav navbar-nav">
+            <li><a href="#/players">All Players</a></li>
+            <li><a href="#/all">Raw Data</a></li>
+          </ul>
+      </div>
+    </div>
+
+  <div ng-view></div>
+
+  <div class="footer">
+    Created by Joe Kampschmidt - 2014 <a href="http://www.jokecamp.com">www.jokecamp.com</a>
+  </div>
+
+  <script src="bower_components/lodash/dist/lodash.js"></script>
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/controllers/rawDataCtrl.js"></script>
+  <script src="js/controllers/playersCtrl.js"></script>
+  <script src="js/filters.js"></script>
+  <script src="js/directives.js"></script>
+  <script src="js/data-svc.js"></script>
+</body>
+</html>
