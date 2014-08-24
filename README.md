@@ -2,6 +2,8 @@
 
 By Joe Kampschmidt
 
+See Demo at <http://www.jokecamp.com/lab/epl-fantasy/#/players>
+
 ## About
 
 I've will try to update the stats every week after the matches. However, since its open source feel free to update the stats yourself.
