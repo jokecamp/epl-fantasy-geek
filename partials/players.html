@@ -1,0 +1,95 @@
+
+<div class="filterForm">
+  <form class="form-inline" role="form">
+    <div class="form-group">
+      Filters by
+    </div>
+    <div class="form-group">
+      Last Name:
+      <input type="text" id="name" ng-model="search.web_name" placeholder="" />
+    </div>
+    <div class="form-group">
+      Team Initials
+      <input type="text" id="team" ng-model="search.team" placeholder="" style='width:50px;' />
+    </div>
+    <div class="form-group">
+      Position:
+      <input type="text" id="position" ng-model="search.position" placeholder="FWD, MID, DEF or GK" />
+    </div>
+    <div class="form-group">
+      Min minutes:
+      <input type="text" id="minutes" ng-model="search.minMinutes" placeholder="0" style='width:50px;' />
+    </div>
+  </form>
+</div>
+
+<div ng-hide="players">Loading...</div>
+
+<table ng-show="players">
+  <thead>
+    <tr>
+      <th><a href='' ng-click="sort('web_name');" >Name</a></th>
+      <th><a href='' ng-click="sort('team');" >Team</a></th>
+      <th><a href='' ng-click="sort('position');" >Pos</a></th>
+      <th><a href='' ng-click="sort('now_cost');" >Cost</a></th>
+      <th><a href='' ng-click="sort('cost_change_event');" >Cost Change</a></th>
+      <th><a href='' ng-click="sort('total_points');" >Total Pts</a></th>
+      <th><a href='' ng-click="sort('event_points');" >Pts</a></th>
+      <th><a href='' ng-click="sort('goals_scored');" >Goals</a></th>
+      <th><a href='' ng-click="sort('assists');" >Assists</a></th>
+      <th><a href='' ng-click="sort('minutes');" >Min</a></th>
+      <th><a href='' ng-click="sort('form');" >Form</a></th>
+      <th><a href='' ng-click="sort('bonus');" >Bonus</a></th>
+      <th><a href='' ng-click="sort('clean_sheets');" >Clean Sheets</a></th>
+      <th><a href='' ng-click="sort('saves');" >Saves</a></th>
+      <th><a href='' ng-click="sort('red_cards');" >Reds</a></th>
+      <th><a href='' ng-click="sort('yellow_cards');" >Yellows</a></th>
+      <th><a href='' ng-click="sort('penalties_missed');" >Pen Miss</a></th>
+      <th><a href='' ng-click="sort('own_goals');" >Own Goals</a></th>
+      <th><a href='' ng-click="sort('selected');" >Selected</a></th>
+      <th><a href='' ng-click="sort('transfers_in_event');" >Tansfers in</a></th>
+      <th><a href='' ng-click="sort('transfers_out_event');" >Tansfers out</a></th>
+      <th><a href='' ng-click="sort('transfer_diff');" >Tansfers Diff</a></th>
+      <th><a href='' ng-click="sort('in_dreamteam');" >Dream Team</a></th>
+      <th><a href='' ng-click="sort('ea_index');" >EA index</a></th>
+      <th><a href='' ng-click="sort('status');" >Status</a></th>
+      <th><a href='' ng-click="sort('news');" >News</a></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="p in players | filter:searchFilter | orderBy:predicate:reverse ">
+      <td>
+        <span title="{{ p.first_name }} {{ p.second_name }}">{{ p.web_name }}</span>
+      </td>
+      <td>{{ p.team }}</td>
+      <td>{{ p.position }}</td>
+      <td class='right'>{{ p.now_cost / 10 | number:1 }}</td>
+      <td class='right {{ p.cost_change_event | movement }}'>{{ p.cost_change_event | number:1 | n }}</td>
+      <td class='center points'>{{ p.total_points | n }}</td>
+      <td class='center'>{{ p.event_points | n }}</td>
+      <td class='center'>{{ p.goals_scored | n }}</td>
+      <td class='center'>{{ p.assists | n}}</td>
+      <td class='right'>{{ p.minutes | n  | number }}</td>
+      <td class='center'>{{ p.form | n }}</td>
+      <td class='center'>{{ p.bonus | n }}</td>
+      <td class='center'>{{ p.clean_sheets | n }}</td>
+      <td class='center'>{{ p.saves | n }}</td>
+      <td class='center'>{{ p.red_cards | n }}</td>
+      <td class='center'>{{ p.yellow_cards | n }}</td>
+      <td class='center'>{{ p.penalties_missed | n }}</td>
+      <td class='center'>{{ p.own_goals | n }}</td>
+      <td class='right'>{{ p.selected | n | number}}</td>
+      <td class='right'>{{ p.transfers_in_event | number }}</td>
+      <td class='right'>{{ p.transfers_out_event | number }}</td>
+      <td class='right {{ p.transfer_diff | movement }}'>{{ p.transfer_diff | number }}</td>
+      <td class='dream'>{{ p.in_dreamteam | maskBool:'*' }}</td>
+      <td class='center'>{{ p.ea_index | number }}</td>
+      <td class='center status {{ p.status | status:p.chance_of_playing_this_round:p.news }}'>
+        <span title="{{ p.chance_of_playing_this_round }} - {{ p.news }}">
+        {{ p.status | statusText:p.chance_of_playing_this_round:p.news }}
+        </span>
+      </td>
+      <td>{{ p.news }}</td>
+    </tr>
+  </tbody>
+</table>
