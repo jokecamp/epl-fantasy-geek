@@ -36,7 +36,7 @@ body { padding:10px; font-size:12px; }
 ul li { display:inline; margin:0 4px;}
 table { margin:0; padding:0; }
 th { background:#35700F; color:#FFF; text-align:center; }
-th a { color:#FFF; text-decoration:none; }
+th a, th a:visited { color:#FFF; text-decoration:none; }
 td, th { border:solid 1px #CCC; padding:0 5px; }
 
 tr:nth-child(even) {background: #EEE;}
