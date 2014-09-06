@@ -20,3 +20,13 @@ Please use this project/page to crush your friends in fantasy football.
 ## To Run
 
 To install all dependencies and run a local web server run `npm start`
+
+
+## To Deploy
+
+Use git subtree to just deploy the app directory
+
+- develop normally
+- commit master branch to github 'git commit -m "message" '
+- push to github with 'git push origin'
+- then push the subtree to the gh-pages branch with `git subtree push --prefix app origin gh-pages`
