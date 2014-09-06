@@ -30,3 +30,8 @@ Use git subtree to just deploy the app directory
 - push to github with 'git push origin'
 - then push the subtree to the gh-pages branch with `git subtree push --prefix app origin gh-pages`
   - or use the ./deploy-app.sh script
+
+
+### Resources
+
+- <https://help.github.com/articles/creating-project-pages-manually>
