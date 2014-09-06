@@ -2,7 +2,7 @@
 
 By Joe Kampschmidt
 
-See Demo at <http://www.jokecamp.com/lab/epl-fantasy/#/players>
+See Demo at <http://jokecamp.github.io/epl-fantasy-geek/#/players> and more information at [jokecamp.com/projects](http://www.jokecamp.com/projects)
 
 ## About
 
