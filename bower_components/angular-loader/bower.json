@@ -1,0 +1,8 @@
+{
+  "name": "angular-loader",
+  "version": "1.2.24-build.438+sha.992101d",
+  "main": "./angular-loader.js",
+  "dependencies": {
+    "angular": "1.2.24-build.438+sha.992101d"
+  }
+}
