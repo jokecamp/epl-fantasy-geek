@@ -5,10 +5,15 @@
 angular.module('myApp.controllers')
   .controller('playersCtrl', ['$scope', 'Data', function($scope, data) {
 
-    $scope.reverse = false;
-    $scope.predicate = '';
-    $scope.search = { };
-    $scope.search.minMinutes = 1;
+    $scope.reset = function() {
+      $scope.reverse = false;
+      $scope.predicate = '';
+      $scope.search = { };
+      $scope.search.position = "ALL";
+      $scope.search.minMinutes = 0;
+    };
+
+    $scope.reset();
 
     $scope.sort = function(col) {
 
@@ -36,9 +41,11 @@ angular.module('myApp.controllers')
         var s = $scope.search;
 
         var name = s.web_name == undefined || player.web_name.toUpperCase().indexOf(s.web_name.toUpperCase()) > -1;
-        var team = s.team == undefined || player.team.indexOf(s.team.toUpperCase()) > -1;
+        var team = s.team == undefined  || player.team.indexOf(s.team.short_name.toUpperCase()) > -1;
         var minutes = s.minMinutes == undefined || s.minMinutes < 0 || (player.minutes >= s.minMinutes);
-        var posn = s.position == undefined || s.position == '' || s.position.toUpperCase() == player.position.toUpperCase();
+
+        var position = s.position == "ALL" ? '' : s.position.toUpperCase();
+        var posn = position == '' || position == player.position;
 
         return name && team && minutes && posn;
     };

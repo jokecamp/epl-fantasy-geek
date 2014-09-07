@@ -9,16 +9,27 @@
       <input type="text" id="name" ng-model="search.web_name" placeholder="" />
     </div>
     <div class="form-group">
-      Team Initials
-      <input type="text" id="team" ng-model="search.team" placeholder="" style='width:50px;' />
+      Team:
+      <select ng-model="search.team" ng-options="t.name for t in teams track by t.short_name">
+        <option value="">ALL</option>
+      </select>
     </div>
     <div class="form-group">
-      Position:
-      <input type="text" id="position" ng-model="search.position" placeholder="FWD, MID, DEF or GK" />
+      <span title="Leave blank to see all positions">Position:</span>
+      <select ng-model="search.position">
+        <option>ALL</option>
+        <option>FWD</option>
+        <option>MID</option>
+        <option>DEF</option>
+        <option>GK</option>
+      </select>
     </div>
     <div class="form-group">
-      Min minutes:
+      <span title="Only show the players who have played at least this many minutes">Min minutes:</span>
       <input type="text" id="minutes" ng-model="search.minMinutes" placeholder="0" style='width:50px;' />
+    </div>
+    <div class="form-group">
+      <button ng-click="reset()">Reset Filters</a>
     </div>
   </form>
 </div>

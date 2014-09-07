@@ -27,7 +27,13 @@ angular.module('myApp.services', [])
     };
 
     var getTeams = function(data) {
-      return data.eiwteams;
+
+      var teams = [];
+      for(var i = 1; i <= 20; i++) {
+        teams.push( data.eiwteams[i]);
+      }
+
+      return teams;
     };
 
     var getRoster = function(data) {
