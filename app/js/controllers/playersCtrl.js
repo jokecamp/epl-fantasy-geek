@@ -3,24 +3,34 @@
 /* Controllers */
 
 angular.module('myApp.controllers')
-  .controller('playersCtrl', ['$scope', 'Data', function($scope, data) {
+  .controller('playersCtrl', ['$scope', 'Data', 'Reports', function($scope, data, reports) {
 
     $scope.reset = function() {
-      $scope.reverse = false;
-      $scope.predicate = '';
+      $scope.sort = {};
+      $scope.sort.reverse = false;
+      $scope.sort.predicate = '';
       $scope.search = { };
       $scope.search.position = "ALL";
       $scope.search.minMinutes = 0;
+      $scope.searchFilter = formFilter;
     };
 
     $scope.reset();
 
     $scope.sort = function(col) {
 
-      if ($scope.predicate == col)
-        $scope.reverse = !$scope.reverse;
+      if ($scope.sort.predicate == col)
+        $scope.sort.reverse = !$scope.sort.reverse;
       else
-        $scope.predicate = col;
+        $scope.sort.predicate = col;
+    };
+
+    $scope.reports = reports;
+
+    $scope.loadReport = function(report) {
+      console.log(report);
+      $scope.searchFilter = report.func;
+      if (report.sort != undefined) $scope.sort = report.sort;
     };
 
     data.getJson().then(function(resp) {
@@ -35,7 +45,7 @@ angular.module('myApp.controllers')
 
     });
 
-    $scope.searchFilter = function(player) {
+    var formFilter = function(player) {
 
         // alias
         var s = $scope.search;

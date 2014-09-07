@@ -34,6 +34,13 @@
   </form>
 </div>
 
+<div class="reports">
+  Reports:
+  <ul>
+    <li ng-repeat="r in reports"><a href='' ng-click='loadReport(r);'>{{ r.name }}</a></li>
+  </ul>
+</div>
+
 <div ng-hide="players">Loading...</div>
 
 <table ng-show="players">
@@ -68,14 +75,14 @@
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="p in players | filter:searchFilter | orderBy:predicate:reverse ">
+    <tr ng-repeat="p in players | filter:searchFilter | orderBy:sort.predicate:sort.reverse ">
       <td>
         <span title="{{ p.first_name }} {{ p.second_name }}">{{ p.web_name }}</span>
       </td>
       <td>{{ p.team }}</td>
       <td>{{ p.position }}</td>
       <td class='right'>{{ p.now_cost / 10 | number:1 }}</td>
-      <td class='right {{ p.cost_change_event | movement }}'>{{ p.cost_change_event | number:1 | n }}</td>
+      <td class='right {{ p.cost_change_event | movement }} center'>{{ p.cost_change_event | number:1 | n }}</td>
       <td class='center points'>{{ p.total_points | n }}</td>
       <td class='center'>{{ p.event_points | n }}</td>
       <td class='center'>{{ p.goals_scored | n }}</td>
@@ -93,7 +100,7 @@
       <td class='right'>{{ p.transfers_in_event | number }}</td>
       <td class='right'>{{ p.transfers_out_event | number }}</td>
       <td class='right {{ p.transfer_diff | movement }}'>{{ p.transfer_diff | number }}</td>
-      <td class='dream'>{{ p.in_dreamteam | maskBool:'*' }}</td>
+      <td class='dream'>{{ p.in_dreamteam | maskBool:'*' }} {{ p.dreamteam_count | n }}</td>
       <td class='center'>{{ p.ea_index | number }}</td>
       <td class='center status {{ p.status | status:p.chance_of_playing_this_round:p.news }}'>
         <span title="{{ p.chance_of_playing_this_round }} - {{ p.news }}">
