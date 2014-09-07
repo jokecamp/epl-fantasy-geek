@@ -29,6 +29,9 @@ angular.module('myApp.controllers')
         $scope.sort.orders = ['-' + col];
       else
         $scope.sort.orders = [col];
+
+        $scope.columns = [];
+        $scope.columns[col] = "highlight";
     };
 
     $scope.reports = reports;
@@ -36,7 +39,14 @@ angular.module('myApp.controllers')
     $scope.loadReport = function(report) {
       console.log(report);
       $scope.searchFilter = report.func;
-      if (report.sort != undefined) $scope.sort.orders = report.sort;
+      if (report.sort != undefined) {
+        $scope.sort.orders = report.sort;
+
+        $scope.columns = [];
+        _.forEach(report.sort, function(c) {
+          c = c.replace('-', '');
+          $scope.columns[c] = "highlight";  });
+      }
     };
 
     data.getJson().then(function(resp) {
