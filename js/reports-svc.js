@@ -27,14 +27,19 @@ angular.module('myApp.services')
     return p.yellow_cards > 0 || p.red_cards > 0;
   };
 
+  var keepersWhoPlay = function(p) {
+    return p.position == "GK" && p.minutes > 0;
+  };
+
 
   var reports = [
-      { name: "Unavailable", func: unavailable },
-      { name: "Injured", func: injured },
-      { name: "Loans", func: loaned },
-      { name: "Transfered", func: transfers },
-      { name: "Dream Team", func: dreamTeam },
-      { name: "Bad Boys", func: badBoys, sort: { predicate: "red_cards", reverse: true} },
+      { name: "Unavailable", func: unavailable, sort: ['team'] },
+      { name: "Injured", func: injured, sort: ['team'] },
+      { name: "Loans", func: loaned, sort: ['team'] },
+      { name: "Transfered", func: transfers, sort: ['team'] },
+      { name: "Dream Team", func: dreamTeam, sort: ['-dreamteam_count'] },
+      { name: "Bad Boys", func: badBoys, sort: ['-red_cards', '-yellow_cards'] },
+      { name: "Keepers", func: keepersWhoPlay, sort: ['now_cost', '-total_points'] },
   ];
 
 
