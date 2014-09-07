@@ -35,7 +35,7 @@
 </div>
 
 <div class="reports">
-  Reports:
+  or choose a Report:
   <ul>
     <li ng-repeat="r in reports"><a href='' ng-click='loadReport(r);'>{{ r.name }}</a></li>
   </ul>
@@ -46,36 +46,36 @@
 <table ng-show="players">
   <thead>
     <tr>
-      <th><a href='' ng-click="sort('web_name');" >Name</a></th>
-      <th><a href='' ng-click="sort('team');" >Team</a></th>
-      <th><a href='' ng-click="sort('position');" >Pos</a></th>
-      <th><a href='' ng-click="sort('now_cost');" >Cost</a></th>
-      <th><a href='' ng-click="sort('cost_change_event');" >Cost Change</a></th>
-      <th><a href='' ng-click="sort('total_points');" >Total Pts</a></th>
-      <th><a href='' ng-click="sort('event_points');" >Pts</a></th>
-      <th><a href='' ng-click="sort('goals_scored');" >Goals</a></th>
-      <th><a href='' ng-click="sort('assists');" >Assists</a></th>
-      <th><a href='' ng-click="sort('minutes');" >Min</a></th>
-      <th><a href='' ng-click="sort('form');" >Form</a></th>
-      <th><a href='' ng-click="sort('bonus');" >Bonus</a></th>
-      <th><a href='' ng-click="sort('clean_sheets');" >Clean Sheets</a></th>
-      <th><a href='' ng-click="sort('saves');" >Saves</a></th>
-      <th><a href='' ng-click="sort('red_cards');" >Reds</a></th>
-      <th><a href='' ng-click="sort('yellow_cards');" >Yellows</a></th>
-      <th><a href='' ng-click="sort('penalties_missed');" >Pen Miss</a></th>
-      <th><a href='' ng-click="sort('own_goals');" >Own Goals</a></th>
-      <th><a href='' ng-click="sort('selected');" >Selected</a></th>
-      <th><a href='' ng-click="sort('transfers_in_event');" >Tansfers in</a></th>
-      <th><a href='' ng-click="sort('transfers_out_event');" >Tansfers out</a></th>
-      <th><a href='' ng-click="sort('transfer_diff');" >Tansfers Diff</a></th>
-      <th><a href='' ng-click="sort('in_dreamteam');" >Dream Team</a></th>
-      <th><a href='' ng-click="sort('ea_index');" >EA index</a></th>
-      <th><a href='' ng-click="sort('status');" >Status</a></th>
-      <th><a href='' ng-click="sort('news');" >News</a></th>
+      <th><a href='' ng-click="sortByColumn('web_name');" >Name</a></th>
+      <th><a href='' ng-click="sortByColumn('team');" >Team</a></th>
+      <th><a href='' ng-click="sortByColumn('position');" >Pos</a></th>
+      <th><a href='' ng-click="sortByColumn('now_cost');" >Cost</a></th>
+      <th><a href='' ng-click="sortByColumn('cost_change_event');" >Cost Change</a></th>
+      <th><a href='' ng-click="sortByColumn('total_points');" >Total Pts</a></th>
+      <th><a href='' ng-click="sortByColumn('event_points');" >Pts</a></th>
+      <th><a href='' ng-click="sortByColumn('goals_scored');" >Goals</a></th>
+      <th><a href='' ng-click="sortByColumn('assists');" >Assists</a></th>
+      <th><a href='' ng-click="sortByColumn('minutes');" >Min</a></th>
+      <th><a href='' ng-click="sortByColumn('form');" >Form</a></th>
+      <th><a href='' ng-click="sortByColumn('bonus');" >Bonus</a></th>
+      <th><a href='' ng-click="sortByColumn('clean_sheets');" >Clean Sheets</a></th>
+      <th><a href='' ng-click="sortByColumn('saves');" >Saves</a></th>
+      <th><a href='' ng-click="sortByColumn('red_cards');" >Reds</a></th>
+      <th><a href='' ng-click="sortByColumn('yellow_cards');" >Yellows</a></th>
+      <th><a href='' ng-click="sortByColumn('penalties_missed');" >Pen Miss</a></th>
+      <th><a href='' ng-click="sortByColumn('own_goals');" >Own Goals</a></th>
+      <th><a href='' ng-click="sortByColumn('selected');" >Selected</a></th>
+      <th><a href='' ng-click="sortByColumn('transfers_in_event');" >Tansfers in</a></th>
+      <th><a href='' ng-click="sortByColumn('transfers_out_event');" >Tansfers out</a></th>
+      <th><a href='' ng-click="sortByColumn('transfer_diff');" >Tansfers Diff</a></th>
+      <th><a href='' ng-click="sortByColumn('in_dreamteam');" >Dream Team</a></th>
+      <th><a href='' ng-click="sortByColumn('ea_index');" >EA index</a></th>
+      <th><a href='' ng-click="sortByColumn('status');" >Status</a></th>
+      <th><a href='' ng-click="sortByColumn('news');" >News</a></th>
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="p in players | filter:searchFilter | orderBy:sort.predicate:sort.reverse ">
+    <tr ng-repeat="p in players | filter:searchFilter | orderBy:sort.orders">
       <td>
         <span title="{{ p.first_name }} {{ p.second_name }}">{{ p.web_name }}</span>
       </td>

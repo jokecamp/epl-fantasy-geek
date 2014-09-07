@@ -17,12 +17,18 @@ angular.module('myApp.controllers')
 
     $scope.reset();
 
-    $scope.sort = function(col) {
+    $scope.sortByColumn = function(col) {
 
+      console.log($scope.sort);
       if ($scope.sort.predicate == col)
         $scope.sort.reverse = !$scope.sort.reverse;
+
+      $scope.sort.predicate = col;
+
+      if ($scope.sort.reverse)
+        $scope.sort.orders = ['-' + col];
       else
-        $scope.sort.predicate = col;
+        $scope.sort.orders = [col];
     };
 
     $scope.reports = reports;
@@ -30,7 +36,7 @@ angular.module('myApp.controllers')
     $scope.loadReport = function(report) {
       console.log(report);
       $scope.searchFilter = report.func;
-      if (report.sort != undefined) $scope.sort = report.sort;
+      if (report.sort != undefined) $scope.sort.orders = report.sort;
     };
 
     data.getJson().then(function(resp) {
