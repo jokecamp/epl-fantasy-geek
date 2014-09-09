@@ -61,3 +61,5 @@ tr:nth-child(even) {background: #EEE;}
 .filterForm .form-group { padding-right:10px; }
 
 .footer { padding:10px 0; }
+
+.loading { font-size:3em; }
