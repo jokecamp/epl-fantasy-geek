@@ -82,7 +82,7 @@
       <td>{{ p.team }}</td>
       <td>{{ p.position }}</td>
       <td class="right">{{ p.now_cost / 10 | number:1 }}</td>
-      <td class='right {{ p.cost_change_event | movement }} center'>{{ p.cost_change_event | number:1 | n }}</td>
+      <td class='right {{ p.cost_change_event | movement }} center'>{{ p.cost_change_event/10 | number:1 | n }}</td>
       <td class='center points'>{{ p.total_points | n }}</td>
       <td class='center'>{{ p.event_points | n }}</td>
       <td class='center'>{{ p.goals_scored | n }}</td>
