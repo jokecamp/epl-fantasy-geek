@@ -29,6 +29,12 @@ Use git subtree to just deploy the app directory to your gh-pages branch. This w
 
 Once setup you can just commit like normal to your main branch then just push the `app` directory as a `git subtree` to the gh-pages branch. Use the following command `git subtree push --prefix app` or use the `./deploy-app.sh script` file
 
+## Download Fantasy JSON Data
+
+In a shell scrip run the following with your own Fantasy Premier League Credentials
+
+  ./getJson.sh user@gmail.com password
+
 ### Resources
 
 - <https://help.github.com/articles/creating-project-pages-manually>
