@@ -12,7 +12,7 @@
 
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/app.css"/>
 
   <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -21,26 +21,12 @@
 
 </head>
 <body>
-  <ul class="menu">
-    <li><a href="#/players">All Players</a></li>
-    <li><a href="#/all">Raw Data</a></li>
-  </ul>
 
-    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="#">2014-2015 English Premier League Fantasy Stats for Geeks</a>
-        </div>
-          <ul class="nav navbar-nav">
-            <li><a href="#/players">All Players</a></li>
-            <li><a href="#/all">Raw Data</a></li>
-          </ul>
-      </div>
-    </div>
+  <h1><i class="fa fa-futbol-o" title="Football icon"></i> 2014-2015 English Premier League Fantasy Stats for Geeks</h1>
 
   <div ng-view></div>
 
-  <div class="footer">
+  <div class="footer text-center">
     Created by Joe Kampschmidt - 2014 <a href="http://www.jokecamp.com">www.jokecamp.com</a>. This is an open source website.
     View the <a href="https://github.com/jokecamp/epl-fantasy-geek">code on github</a>.
   </div>
@@ -49,7 +35,6 @@
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
   <script src="bower_components/angular-route/angular-route.js"></script>
   <script src="js/app.js"></script>
-  <script src="js/controllers/rawDataCtrl.js"></script>
   <script src="js/controllers/playersCtrl.js"></script>
   <script src="js/filters.js"></script>
   <script src="js/directives.js"></script>

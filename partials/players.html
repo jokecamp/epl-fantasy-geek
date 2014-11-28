@@ -2,21 +2,21 @@
 <div class="filterForm">
   <form class="form-inline" role="form">
     <div class="form-group">
-      Filter by
+      <label>Filter by:</label>
     </div>
     <div class="form-group">
-      Last Name:
-      <input type="text" id="name" ng-model="search.web_name" placeholder="" />
+      <label>Last Name:</label>
+      <input type="text" id="name" ng-model="search.web_name" placeholder="" class="form-control" />
     </div>
     <div class="form-group">
-      Team:
-      <select ng-model="search.team" ng-options="t.name for t in teams track by t.short_name">
+      <label>Team:</label>
+      <select ng-model="search.team" ng-options="t.name for t in teams track by t.short_name" class="form-control">
         <option value="">ALL</option>
       </select>
     </div>
     <div class="form-group">
-      <span title="Leave blank to see all positions">Position:</span>
-      <select ng-model="search.position">
+      <label title="Leave blank to see all positions">Position:</label>
+      <select ng-model="search.position" class="form-control">
         <option>ALL</option>
         <option>FWD</option>
         <option>MID</option>
@@ -25,29 +25,33 @@
       </select>
     </div>
     <div class="form-group">
-      <span title="Only show the players who have played at least this many minutes">Min minutes:</span>
-      <input type="text" id="minutes" ng-model="search.minMinutes" placeholder="0" style='width:50px;' />
+      <label title="Only show the players who have played at least this many minutes">Min minutes:</label>
+      <input type="text" id="minutes" ng-model="search.minMinutes" placeholder="0" style='width:50px;' class="form-control" />
     </div>
     <div class="form-group">
-      <button ng-click="reset()">Reset Filters</a>
+      <button ng-click="reset()" class='btn btn-default'>Reset Filters</a>
+      <button ng-click="clearPins()" class='btn btn-default'>Removed Pinned Players</a>
     </div>
   </form>
 </div>
 
 <div class="reports">
-  or choose a Report:
   <ul>
+    <li>or choose a Report:</li>
     <li ng-repeat="r in reports"><a href='' ng-click='loadReport(r);'>{{ r.name }}</a></li>
   </ul>
 </div>
 
-<div ng-hide="players" class='loading'>Loading...</div>
+<div ng-hide="players" class='loading text-center'>
+  <i class="fa fa-spinner"></i> Loading...
+</div>
 
-<table ng-show="players">
+<table ng-show="players" id="header-fixed">
   <thead>
     <tr>
+      <th>pin</th>
       <th class=" {{ columns['web_name'] }} "><a href='' ng-click="sortByColumn('web_name');" >Name</a></th>
-      <th class=" {{ columns['team'] }} "><a href='' ng-click="sortByColumn('team');" >Team</a></th>
+      <th class=" {{ columns['team'] }} "><a href='' ng-click="sortByColumn('team.short_name');" >Team</a></th>
       <th class=" {{ columns['position'] }} "><a href='' ng-click="sortByColumn('position');" >Pos</a></th>
       <th class=" {{ columns['now_cost'] }} "><a href='' ng-click="sortByColumn('now_cost');" >Cost</a></th>
       <th class=" {{ columns['cost_change_event'] }} "><a href='' ng-click="sortByColumn('cost_change_event');" >Cost Change</a></th>
@@ -77,9 +81,12 @@
   <tbody>
     <tr ng-repeat="p in players | filter:searchFilter | orderBy:sort.orders">
       <td>
+        <input type="checkbox" ng-model="p.pinned" />
+      </td>
+      <td>
         <span title="{{ p.first_name }} {{ p.second_name }}">{{ p.web_name }}</span>
       </td>
-      <td>{{ p.team }}</td>
+      <td>{{ p.team.short_name }}</td>
       <td>{{ p.position }}</td>
       <td class="right">{{ p.now_cost / 10 | number:1 }}</td>
       <td class='right {{ p.cost_change_event | movement }} center'>{{ p.cost_change_event/10 | number:1 | n }}</td>
@@ -107,7 +114,10 @@
         {{ p.status | statusText:p.chance_of_playing_this_round:p.news }}
         </span>
       </td>
-      <td>{{ p.news }}</td>
+      <td>
+        <a href="https://www.google.com/search?hl=en&gl=us&tbm=nws&authuser=0&tbs=qdr:w&&q={{ p.web_name }} {{ p.team.name }}" target="_blank">
+          <i class="fa fa-search"></i>
+        {{ p.news || 'search Google News'}}</a></td>
     </tr>
   </tbody>
 </table>
