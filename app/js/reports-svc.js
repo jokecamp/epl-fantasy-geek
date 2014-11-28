@@ -31,6 +31,13 @@ angular.module('myApp.services')
     return p.position == "GK" && p.minutes > 0;
   };
 
+  var attackingDefenders = function(p) {
+    return p.position == "DEF"  && (p.goals_scored > 0 || p.assists > 0);
+  };
+
+  var lastWeekDreamTeam = function(p) {
+    return p.in_dreamteam;
+  };
 
   var reports = [
       { name: "Unavailable", func: unavailable, sort: ['team'] },
@@ -40,6 +47,8 @@ angular.module('myApp.services')
       { name: "Dream Team", func: dreamTeam, sort: ['-dreamteam_count'] },
       { name: "Bad Boys", func: badBoys, sort: ['-red_cards', '-yellow_cards'] },
       { name: "Keepers", func: keepersWhoPlay, sort: ['now_cost', '-total_points'] },
+      { name: "Attacking Defenders", func: attackingDefenders, sort: ['-goals_scored', '-assists'] },
+      { name: "Last Week's Dream Team", func: lastWeekDreamTeam, sort: ['position'] },
   ];
 
 

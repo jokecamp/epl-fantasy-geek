@@ -30,7 +30,7 @@ body { padding:10px; font-size:12px; }
   padding: 0;
 }
 
-h1 { font-size: 1.3em; }
+h1 { font-size: 1.3em; margin-top:0px; }
 
 .center { text-align:center; }
 .right { text-align:right; }
@@ -44,7 +44,7 @@ th.highlight { background:#000; }
 th a, th a:visited { color:#FFF; text-decoration:none; }
 td, th { border:solid 1px #CCC; padding:0 5px; }
 
-tr:nth-child(even) {background: #EEE;}
+tr:nth-child(even) { background: #EEE; }
 
 .status { font-weight:bold; padding:1px 2px; }
 .warn { background:#CC0000; color:#FFF; }
@@ -69,3 +69,9 @@ tr:nth-child(even) {background: #EEE;}
 .btn {
     margin: 2px;
 }
+
+.ARS { color: #FF0000; }
+.CHE, .EVE { color: #1F5AFF; }
+.MUN { color: #BF1313; }
+.MCI { color: #6FF2EA; }
+.BUR { color: #943B3B}

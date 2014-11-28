@@ -35,18 +35,16 @@
   </form>
 </div>
 
-<div class="reports">
-  <ul>
-    <li>or choose a Report:</li>
-    <li ng-repeat="r in reports"><a href='' ng-click='loadReport(r);'>{{ r.name }}</a></li>
-  </ul>
-</div>
+<ul class="list-inline">
+  <li>or choose a Report:</li>
+  <li ng-repeat="r in reports"><a href='' ng-click='loadReport(r);'>{{ r.name }}</a></li>
+</ul>
 
 <div ng-hide="players" class='loading text-center'>
   <i class="fa fa-spinner"></i> Loading...
 </div>
 
-<table ng-show="players" id="header-fixed">
+<table ng-show="players" >
   <thead>
     <tr>
       <th>pin</th>
@@ -86,8 +84,8 @@
       <td>
         <span title="{{ p.first_name }} {{ p.second_name }}">{{ p.web_name }}</span>
       </td>
-      <td>{{ p.team.short_name }}</td>
-      <td>{{ p.position }}</td>
+      <td class='center'>{{ p.team.short_name }}</td>
+      <td class='center'>{{ p.posn }}</td>
       <td class="right">{{ p.now_cost / 10 | number:1 }}</td>
       <td class='right {{ p.cost_change_event | movement }} center'>{{ p.cost_change_event/10 | number:1 | n }}</td>
       <td class='center points'>{{ p.total_points | n }}</td>
