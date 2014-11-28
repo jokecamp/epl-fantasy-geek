@@ -15,10 +15,13 @@ angular.module('myApp.services', [])
         });
 
         // custom data
-        if (x.team_id > 0) x.team = _.find(teams, function(t) { return t.id == x.team_id; }).short_name;
+        if (x.team_id > 0) {
+          x.team = _.find(teams, function(t) { return t.id == x.team_id; });
+        }
         x.position = $filter('pos')(x.element_type_id);
         x.transfer_diff = x.transfers_in_event - x.transfers_out_event;
 
+        x.pinned = false;
         return x;
 
       });

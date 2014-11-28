@@ -30,6 +30,8 @@ body { padding:10px; font-size:12px; }
   padding: 0;
 }
 
+h1 { font-size: 1.3em; }
+
 .center { text-align:center; }
 .right { text-align:right; }
 
@@ -62,4 +64,8 @@ tr:nth-child(even) {background: #EEE;}
 
 .footer { padding:10px 0; }
 
-.loading { font-size:3em; }
+.loading { font-size:2em; }
+
+.btn {
+    margin: 2px;
+}
