@@ -74,12 +74,13 @@
       <th class=" {{ columns['ea_index'] }} "><a href='' ng-click="sortByColumn('ea_index');" >EA index</a></th>
       <th class=" {{ columns['status'] }} "><a href='' ng-click="sortByColumn('status');" >Status</a></th>
       <th class=" {{ columns['news'] }} "><a href='' ng-click="sortByColumn('news');" >News</a></th>
+      <th class=" {{ columns['twitter'] }} "><i class="fa fa-twitter fa-2x" ng-click="sortByColumn('twitter')"></i></th>
     </tr>
   </thead>
   <tbody>
     <tr ng-repeat="p in players | filter:searchFilter | orderBy:sort.orders">
       <td>
-        <input type="checkbox" ng-model="p.pinned" />
+        <input type="checkbox" ng-model="p.pinned" title='pin {{ p.id }}' />
       </td>
       <td>
         <span title="{{ p.first_name }} {{ p.second_name }}">{{ p.web_name }}</span>
@@ -115,7 +116,13 @@
       <td>
         <a href="https://www.google.com/search?hl=en&gl=us&tbm=nws&authuser=0&tbs=qdr:w&&q={{ p.web_name }} {{ p.team.name }}" target="_blank">
           <i class="fa fa-search"></i>
-        {{ p.news || 'search Google News'}}</a></td>
+        {{ p.news || 'search Google News'}}</a>
+      </td>
+      <td>
+        <a href="https://twitter.com/{{ p.twitter }}" ng-show="p.twitter" target="_blank">
+          <i class="fa fa-twitter fa-2x" title='{{ p.twitter }} {{ p.web_name }}'></i>
+        </a>
+      </td>
     </tr>
   </tbody>
 </table>
