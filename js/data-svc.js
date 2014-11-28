@@ -19,6 +19,12 @@ angular.module('myApp.services', [])
           x.team = _.find(teams, function(t) { return t.id == x.team_id; });
         }
         x.position = $filter('pos')(x.element_type_id);
+
+        if (x.position == 'GK') x.posn = 'K';
+        if (x.position == 'FWD') x.posn = 'F';
+        if (x.position == 'MID') x.posn = 'M';
+        if (x.position == 'DEF') x.posn = 'D';
+
         x.transfer_diff = x.transfers_in_event - x.transfers_out_event;
 
         x.pinned = false;
