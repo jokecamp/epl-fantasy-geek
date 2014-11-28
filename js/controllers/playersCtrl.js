@@ -68,7 +68,12 @@ angular.module('myApp.controllers', [])
       $scope.allPlayers = data.players(resp);
 
       $scope.columns = ['web_name', 'team'];
-      $scope.players = data.cleanData($scope.allPlayers, $scope.teams, $scope.stat);
+
+      data.getCleanData($scope.allPlayers, $scope.teams, $scope.stat).then(function(items) {
+        $scope.players = items;
+      });
+
+      // console.log(JSON.stringify(data.twitter()));
 
       $scope.reset();
     });
