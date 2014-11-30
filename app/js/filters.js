@@ -59,13 +59,13 @@ filter('n', [ function() {
 
     if (i == 'd') {
       if (chance == 25 || chance == 50 || chance == 75) return chance + "%";
+      return "d" // doubt;
      }
 
     if (i == 'i') return "i";
+    if (i == 'u' || i == 'n') return "x";
 
-    if (i == 'u') return "x";
-
-    return "";
+    return i;
   };
 }]
 

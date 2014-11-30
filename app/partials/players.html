@@ -29,8 +29,9 @@
       <input type="text" id="minutes" ng-model="search.minMinutes" placeholder="0" style='width:50px;' class="form-control" />
     </div>
     <div class="form-group">
-      <button ng-click="reset()" class='btn btn-default'>Reset Filters</a>
-      <button ng-click="clearPins()" class='btn btn-default'>Removed Pinned Players</a>
+      <a ng-click="reset()" class='btn btn-default'>Reset Filters</a>
+      <a ng-click="clearPins()" class='btn btn-default'>Removed Pinned Players</a>
+      <a href="js/data.json" class="btn btn-default"><i class="fa fa-cloud-download"></i> download raw JSON</a>
     </div>
   </form>
 </div>
@@ -53,8 +54,8 @@
       <th class=" {{ columns['position'] }} "><a href='' ng-click="sortByColumn('position');" >Pos</a></th>
       <th class=" {{ columns['now_cost'] }} "><a href='' ng-click="sortByColumn('now_cost');" >Cost</a></th>
       <th class=" {{ columns['cost_change_event'] }} "><a href='' ng-click="sortByColumn('cost_change_event');" >Cost Change</a></th>
-      <th class=" {{ columns['total_points'] }} "><a href='' ng-click="sortByColumn('total_points');" >Total Pts</a></th>
-      <th class=" {{ columns['event_points'] }} "><a href='' ng-click="sortByColumn('event_points');" >Pts</a></th>
+      <th class=" {{ columns['total_points'] }} "><a href='' ng-click="sortByColumn('total_points');" >Total Points</a></th>
+      <th class=" {{ columns['event_points'] }} "><a href='' ng-click="sortByColumn('event_points');" >Points</a></th>
       <th class=" {{ columns['goals_scored'] }} "><a href='' ng-click="sortByColumn('goals_scored');" >Goals</a></th>
       <th class=" {{ columns['assists'] }} "><a href='' ng-click="sortByColumn('assists');" >Assists</a></th>
       <th class=" {{ columns['minutes'] }} "><a href='' ng-click="sortByColumn('minutes');" >Min</a></th>
@@ -73,7 +74,7 @@
       <th class=" {{ columns['in_dreamteam'] }} "><a href='' ng-click="sortByColumn('in_dreamteam');" >Dream Team</a></th>
       <th class=" {{ columns['ea_index'] }} "><a href='' ng-click="sortByColumn('ea_index');" >EA index</a></th>
       <th class=" {{ columns['status'] }} "><a href='' ng-click="sortByColumn('status');" >Status</a></th>
-      <th class=" {{ columns['news'] }} "><a href='' ng-click="sortByColumn('news');" >News</a></th>
+      <th class=" {{ columns['news'] }} "><a href='' ng-click="sortByColumn('news');" >News / Injuries</a></th>
       <th class=" {{ columns['twitter'] }} "><i class="fa fa-twitter fa-2x" ng-click="sortByColumn('twitter')"></i></th>
     </tr>
   </thead>
@@ -108,15 +109,13 @@
       <td class='right {{ p.transfer_diff | movement }}'>{{ p.transfer_diff | number }}</td>
       <td class='dream'>{{ p.in_dreamteam | maskBool:'*' }} {{ p.dreamteam_count | n }}</td>
       <td class='center'>{{ p.ea_index | number }}</td>
-      <td class='center status {{ p.status | status:p.chance_of_playing_this_round:p.news }}'>
-        <span title="{{ p.chance_of_playing_this_round }} - {{ p.news }}">
-        {{ p.status | statusText:p.chance_of_playing_this_round:p.news }}
-        </span>
+      <td class='center'>
+        <span class="status {{ p.status | status:p.chance_of_playing_this_round:p.news }}" ng-hide=" p.status == 'a' "> {{ p.status | statusText:p.chance_of_playing_this_round:p.news }} </span>
       </td>
       <td>
         <a href="https://www.google.com/search?hl=en&gl=us&tbm=nws&authuser=0&tbs=qdr:w&&q={{ p.web_name }} {{ p.team.name }}" target="_blank">
           <i class="fa fa-search"></i>
-        {{ p.news || 'search Google News'}}</a>
+        {{ p.news || 'google news'}}</a>
       </td>
       <td>
         <a href="https://twitter.com/{{ p.twitter }}" ng-show="p.twitter" target="_blank">
