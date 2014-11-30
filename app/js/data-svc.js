@@ -34,6 +34,8 @@ angular.module('myApp.services', [])
         if (x.position == 'MID') x.posn = 'M';
         if (x.position == 'DEF') x.posn = 'D';
 
+
+        x.points_per_cost = x.total_points/ (x.now_cost/10);
         x.transfer_diff = x.transfers_in_event - x.transfers_out_event;
         x.pinned = false;
 

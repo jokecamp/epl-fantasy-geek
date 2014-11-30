@@ -56,6 +56,7 @@
       <th class=" {{ columns['cost_change_event'] }} "><a href='' ng-click="sortByColumn('cost_change_event');" >Cost Change</a></th>
       <th class=" {{ columns['total_points'] }} "><a href='' ng-click="sortByColumn('total_points');" >Total Points</a></th>
       <th class=" {{ columns['event_points'] }} "><a href='' ng-click="sortByColumn('event_points');" >Points</a></th>
+      <th class=" {{ columns['points_per_cost'] }} "><a href='' ng-click="sortByColumn('points_per_cost');" >Points / Cost</a></th>
       <th class=" {{ columns['goals_scored'] }} "><a href='' ng-click="sortByColumn('goals_scored');" >Goals</a></th>
       <th class=" {{ columns['assists'] }} "><a href='' ng-click="sortByColumn('assists');" >Assists</a></th>
       <th class=" {{ columns['minutes'] }} "><a href='' ng-click="sortByColumn('minutes');" >Min</a></th>
@@ -92,9 +93,12 @@
       <td class='right {{ p.cost_change_event | movement }} center'>{{ p.cost_change_event/10 | number:1 | n }}</td>
       <td class='center points'>{{ p.total_points | n }}</td>
       <td class='center'>{{ p.event_points | n }}</td>
+      <td class='center'>
+          <span ng-show='p.points_per_cost > 0'>{{ p.points_per_cost | number:1 }}</span>
+      </td>
       <td class='center'>{{ p.goals_scored | n }}</td>
       <td class='center'>{{ p.assists | n}}</td>
-      <td class='right'>{{ p.minutes | n  | number }}</td>
+      <td class='right' title='minutes'>{{ p.minutes | n  | number }}</td>
       <td class='center'>{{ p.form | n }}</td>
       <td class='center'>{{ p.bonus | n }}</td>
       <td class='center'>{{ p.clean_sheets | n }}</td>
@@ -107,7 +111,9 @@
       <td class='right'>{{ p.transfers_in_event | number }}</td>
       <td class='right'>{{ p.transfers_out_event | number }}</td>
       <td class='right {{ p.transfer_diff | movement }}'>{{ p.transfer_diff | number }}</td>
-      <td class='dream'>{{ p.in_dreamteam | maskBool:'*' }} {{ p.dreamteam_count | n }}</td>
+      <td class='dream right' title=' Dreamteam this week and total'>
+        <i class="fa fa-star" ng-show='p.in_dreamteam'></i>&nbsp;{{ p.dreamteam_count | n }}
+      </td>
       <td class='center'>{{ p.ea_index | number }}</td>
       <td class='center'>
         <span class="status {{ p.status | status:p.chance_of_playing_this_round:p.news }}" ng-hide=" p.status == 'a' "> {{ p.status | statusText:p.chance_of_playing_this_round:p.news }} </span>
@@ -125,3 +131,9 @@
     </tr>
   </tbody>
 </table>
+
+Key<br>
+<i class="fa fa-star"></i> = In last week's dream team<br>
+x = transferred/loadned<br>
+i = injured <br>
+s = suspended<br>
