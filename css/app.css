@@ -37,7 +37,7 @@ h1 { font-size: 1.3em; margin-top:0px; }
 
 ul li { display:inline; margin:0 4px;}
 table { margin:0; padding:0; }
-th { background:#35700F; color:#FFF; text-align:center; }
+th { background:#35700F; color:#FFF; text-align:center; font-weight:normal; font-size:.9em; }
 
 th.highlight { background:#000; }
 
@@ -52,6 +52,16 @@ tr:nth-child(even) { background: #EEE; }
 .doubt25 { background:#FF5C26; color:#FFF; }
 .doubt50 { background:#FFAA33; }
 .doubt75 { background:#FFE463; }
+
+
+/*
+.status { font-weight:bold; }
+.warn { color:#CC0000; ; }
+.doubt { color:#FF5C26;   }
+.doubt25 { color:#FF5C26; }
+.doubt50 { color:#FFAA33; }
+.doubt75 { color:#FFE463; }
+*/
 
 .positive { color:green; }
 .negative { color:#CC0000; }
