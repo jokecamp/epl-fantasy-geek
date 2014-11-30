@@ -37,9 +37,17 @@
 </div>
 
 <ul class="list-inline">
-  <li>or choose a Report:</li>
+  <li>Custom Filters:</li>
   <li ng-repeat="r in reports"><a href='' ng-click='loadReport(r);'>{{ r.name }}</a></li>
 </ul>
+
+<!-- -->
+<ul class='list-inline'>
+  <li>Sorting by:
+  <li ng-repeat="c in sort.orders">{{ c }}</li>
+</ul>
+
+
 
 <div ng-hide="players" class='loading text-center'>
   <i class="fa fa-spinner"></i> Loading...
@@ -48,35 +56,36 @@
 <table ng-show="players" >
   <thead>
     <tr>
-      <th>pin</th>
-      <th class=" {{ columns['web_name'] }} "><a href='' ng-click="sortByColumn('web_name');" >Name</a></th>
-      <th class=" {{ columns['team'] }} "><a href='' ng-click="sortByColumn('team.short_name');" >Team</a></th>
-      <th class=" {{ columns['position'] }} "><a href='' ng-click="sortByColumn('position');" >Pos</a></th>
-      <th class=" {{ columns['now_cost'] }} "><a href='' ng-click="sortByColumn('now_cost');" >Cost</a></th>
-      <th class=" {{ columns['cost_change_event'] }} "><a href='' ng-click="sortByColumn('cost_change_event');" >Cost Change</a></th>
-      <th class=" {{ columns['total_points'] }} "><a href='' ng-click="sortByColumn('total_points');" >Total Points</a></th>
-      <th class=" {{ columns['event_points'] }} "><a href='' ng-click="sortByColumn('event_points');" >Points</a></th>
-      <th class=" {{ columns['points_per_cost'] }} "><a href='' ng-click="sortByColumn('points_per_cost');" >Points / Cost</a></th>
-      <th class=" {{ columns['goals_scored'] }} "><a href='' ng-click="sortByColumn('goals_scored');" >Goals</a></th>
-      <th class=" {{ columns['assists'] }} "><a href='' ng-click="sortByColumn('assists');" >Assists</a></th>
-      <th class=" {{ columns['minutes'] }} "><a href='' ng-click="sortByColumn('minutes');" >Min</a></th>
-      <th class=" {{ columns['form'] }} "><a href='' ng-click="sortByColumn('form');" >Form</a></th>
-      <th class=" {{ columns['bonus'] }} "><a href='' ng-click="sortByColumn('bonus');" >Bonus</a></th>
-      <th class=" {{ columns['clean_sheets'] }} "><a href='' ng-click="sortByColumn('clean_sheets');" >Clean Sheets</a></th>
-      <th class=" {{ columns['saves'] }} "><a href='' ng-click="sortByColumn('saves');" >Saves</a></th>
-      <th class=" {{ columns['red_cards'] }} "><a href='' ng-click="sortByColumn('red_cards');" >Reds</a></th>
-      <th class=" {{ columns['yellow_cards'] }} "><a href='' ng-click="sortByColumn('yellow_cards');" >Yellows</a></th>
-      <th class=" {{ columns['penalties_missed'] }} "><a href='' ng-click="sortByColumn('penalties_missed');" >Pen Miss</a></th>
-      <th class=" {{ columns['own_goals'] }} "><a href='' ng-click="sortByColumn('own_goals');" >Own Goals</a></th>
-      <th class=" {{ columns['selected'] }} "><a href='' ng-click="sortByColumn('selected');" >Selected</a></th>
-      <th class=" {{ columns['transfers_in_event'] }} "><a href='' ng-click="sortByColumn('transfers_in_event');" >Tansfers in</a></th>
-      <th class=" {{ columns['transfers_out_event'] }} "><a href='' ng-click="sortByColumn('transfers_out_event');" >Tansfers out</a></th>
-      <th class=" {{ columns['transfer_diff'] }} "><a href='' ng-click="sortByColumn('transfer_diff');" >Tansfers Diff</a></th>
-      <th class=" {{ columns['in_dreamteam'] }} "><a href='' ng-click="sortByColumn('in_dreamteam');" >Dream Team</a></th>
-      <th class=" {{ columns['ea_index'] }} "><a href='' ng-click="sortByColumn('ea_index');" >EA index</a></th>
-      <th class=" {{ columns['status'] }} "><a href='' ng-click="sortByColumn('status');" >Status</a></th>
-      <th class=" {{ columns['news'] }} "><a href='' ng-click="sortByColumn('news');" >News / Injuries</a></th>
-      <th class=" {{ columns['twitter'] }} "><i class="fa fa-twitter fa-2x" ng-click="sortByColumn('twitter')"></i></th>
+      <th ng-class="highlight('pinned')" >pin</th>
+      <th ng-class="highlight('web_name')"><a href='' ng-click="sortByColumn('web_name');" >Name</a></th>
+      <th ng-class="highlight('team.short_name')"><a href='' ng-click="sortByColumn('team.short_name');" >Team</a></th>
+      <th ng-class="highlight('position')"><a href='' ng-click="sortByColumn('position');" >Pos</a></th>
+      <th ng-class="highlight('now_cost')"><a href='' ng-click="sortByColumn('-now_cost');" >Cost</a></th>
+      <th ng-class="highlight('cost_change_event')"><a href='' ng-click="sortByColumn('-cost_change_event');" >Cost Change</a></th>
+      <th ng-class="highlight('total_points')"><a href='' ng-click="sortByColumn('-total_points');" >Total Points</a></th>
+      <th ng-class="highlight('event_points')"><a href='' ng-click="sortByColumn('-event_points');" >Points</a></th>
+      <th ng-class="highlight('points_per_cost')"><a href='' ng-click="sortByColumn('-points_per_cost');" >Points / Cost</a></th>
+      <th ng-class="highlight('goals_scored')"><a href='' ng-click="sortByColumn('-goals_scored');" >Goals</a></th>
+      <th ng-class="highlight('assists')"><a href='' ng-click="sortByColumn('-assists');" >Assists</a></th>
+      <th ng-class="highlight('minutes')"><a href='' ng-click="sortByColumn('-minutes');" >Min</a></th>
+      <th ng-class="highlight('form')"><a href='' ng-click="sortByColumn('-form');" >Form</a></th>
+      <th ng-class="highlight('bonus')"><a href='' ng-click="sortByColumn('-bonus');" >Bonus</a></th>
+      <th ng-class="highlight('clean_sheets')"><a href='' ng-click="sortByColumn('-clean_sheets');" >Clean Sheets</a></th>
+      <th ng-class="highlight('saves')"><a href='' ng-click="sortByColumn('-saves');" >Saves</a></th>
+      <th ng-class="highlight('red_cards')"><a href='' ng-click="sortByColumn('-red_cards');" >Reds</a></th>
+      <th ng-class="highlight('yellow_cards')"><a href='' ng-click="sortByColumn('-yellow_cards');" >Yellows</a></th>
+      <th ng-class="highlight('penalties_missed')"><a href='' ng-click="sortByColumn('-penalties_missed');" >Pen Miss</a></th>
+      <th ng-class="highlight('own_goals')"><a href='' ng-click="sortByColumn('-own_goals');" >Own Goals</a></th>
+      <th ng-class="highlight('selected')"><a href='' ng-click="sortByColumn('-selected');" >Selected</a></th>
+      <th ng-class="highlight('transfers_in_event')"><a href='' ng-click="sortByColumn('-transfers_in_event');" >Tansfers in</a></th>
+      <th ng-class="highlight('transfers_out_event')"><a href='' ng-click="sortByColumn('-transfers_out_event');" >Tansfers out</a></th>
+      <th ng-class="highlight('transfer_diff')"><a href='' ng-click="sortByColumn('-transfer_diff');" >Tansfers Diff</a></th>
+      <th ng-class="highlight('dreamteam_count')"><a href='' ng-click="sortByColumn('-dreamteam_count');" >Dream Team</a></th>
+      <th ng-class="highlight('ea_index')"><a href='' ng-click="sortByColumn('-ea_index');" >EA index</a></th>
+      <th ng-class="highlight('status')"><a href='' ng-click="sortByColumn('-status');" >Status</a></th>
+      <th ng-class="highlight('news')"><a href='' ng-click="sortByColumn('-news');" >News / Injuries</a></th>
+      <th ng-class="highlight('twitter')"><a href='' ng-click="sortByColumn('-twitter')"><i class="fa fa-twitter fa-2x" ></i></a></th>
+      <th><i class="fa fa-youtube fa-2x" title='youtube highlights'></i></th>
     </tr>
   </thead>
   <tbody>
@@ -98,7 +107,9 @@
       </td>
       <td class='center'>{{ p.goals_scored | n }}</td>
       <td class='center'>{{ p.assists | n}}</td>
-      <td class='right' title='minutes'>{{ p.minutes | n  | number }}</td>
+      <td class='right' title='minutes'>
+        <span ng-show='p.minutes > 0'>{{ p.minutes | n  | number }}</span>
+      </td>
       <td class='center'>{{ p.form | n }}</td>
       <td class='center'>{{ p.bonus | n }}</td>
       <td class='center'>{{ p.clean_sheets | n }}</td>
@@ -114,18 +125,24 @@
       <td class='dream right' title=' Dreamteam this week and total'>
         <i class="fa fa-star" ng-show='p.in_dreamteam'></i>&nbsp;{{ p.dreamteam_count | n }}
       </td>
-      <td class='center'>{{ p.ea_index | number }}</td>
+      <td class='center'>
+        <span ng-show='p.ea_index > 0'>{{ p.ea_index | number }}</span>
+      </td>
       <td class='center'>
         <span class="status {{ p.status | status:p.chance_of_playing_this_round:p.news }}" ng-hide=" p.status == 'a' "> {{ p.status | statusText:p.chance_of_playing_this_round:p.news }} </span>
       </td>
       <td>
-        <a href="https://www.google.com/search?hl=en&gl=us&tbm=nws&authuser=0&tbs=qdr:w&&q={{ p.web_name }} {{ p.team.name }}" target="_blank">
-          <i class="fa fa-search"></i>
-        {{ p.news || 'google news'}}</a>
+        <a href="https://www.google.com/search?hl=en&gl=us&tbm=nws&authuser=0&tbs=qdr:w&&q={{ p.web_name }} {{ p.team.name }}" title='view google news headlines' target="_blank">
+          <i class="fa fa-newspaper-o"></i> {{ p.news }}</a>
       </td>
       <td>
         <a href="https://twitter.com/{{ p.twitter }}" ng-show="p.twitter" target="_blank">
           <i class="fa fa-twitter fa-2x" title='{{ p.twitter }} {{ p.web_name }}'></i>
+        </a>
+      </td>
+      <td>
+        <a href="https://www.youtube.com/results?search_query={{ p.web_name }}+{{ p.team.name }}" target="_blank" title='Search for youtube highlights'>
+          <i class="fa fa-youtube-play fa-2x"></i>
         </a>
       </td>
     </tr>

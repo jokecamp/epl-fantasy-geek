@@ -5,15 +5,27 @@
 angular.module('myApp.controllers', [])
   .controller('playersCtrl', ['$scope', 'Data', 'Reports', function($scope, data, reports) {
 
+    var reportFilter = null;
+
     $scope.reset = function() {
       $scope.sort = {};
-      $scope.sort.reverse = false;
       $scope.sort.predicate = '';
       $scope.sort.orders = ['-pinned'];
+
+      $scope.columns = [];
       $scope.search = { };
       $scope.search.position = "ALL";
       $scope.search.minMinutes = 0;
-      $scope.searchFilter = formFilter;
+      reportFilter = null;
+    };
+
+    $scope.searchFilter = function(p) {
+
+      if (p.pinned) return true;
+
+      if (reportFilter) return reportFilter(p) && formFilter(p);
+
+      return formFilter(p);
     };
 
     $scope.clearPins = function() {
@@ -22,21 +34,27 @@ angular.module('myApp.controllers', [])
       });
     };
 
+    $scope.highlight = function(col) {
+      if (!$scope.sort) return '';
+      if (!$scope.sort.orders) return '';
+
+      if (_.chain($scope.sort.orders).map(function(c) { return c.replace('-', '').replace('-', '');}).contains(col).value())
+        return 'highlight';
+
+      return '';
+    };
+
     $scope.sortByColumn = function(col) {
 
-      console.log($scope.sort);
-      if ($scope.sort.predicate == col)
-        $scope.sort.reverse = !$scope.sort.reverse;
+      if ($scope.sort.predicate == col) col = '-' + col;
+
+      if (col.indexOf('--') > -1) col = col.substring(2, col.length);
 
       $scope.sort.predicate = col;
+      $scope.sort.orders = $.merge(['-pinned'], [col]);
 
-      if ($scope.sort.reverse)
-        $scope.sort.orders = ['-' + col];
-      else
-        $scope.sort.orders = [col];
-
-        $scope.columns = [];
-        $scope.columns[col] = "highlight";
+      $scope.columns = ['-pinned'];
+      $scope.columns[col] = "highlight";
     };
 
     $scope.reports = reports;
@@ -44,8 +62,8 @@ angular.module('myApp.controllers', [])
     $scope.loadReport = function(report) {
 
       $scope.reset();
-      $scope.searchFilter = function(p) {
-        if (p.pinned) return true;
+
+      reportFilter = function(p) {
         return report.func(p);
       };
 
@@ -71,7 +89,7 @@ angular.module('myApp.controllers', [])
 
       data.getCleanData($scope.allPlayers, $scope.teams, $scope.stat).then(function(items) {
         $scope.players = items;
-        console.log(JSON.stringify($scope.players));
+        //console.log(JSON.stringify($scope.players));
       });
 
 
@@ -80,8 +98,6 @@ angular.module('myApp.controllers', [])
     });
 
     var formFilter = function(player) {
-
-        if (player.pinned) return true;
 
         // alias
         var s = $scope.search;
