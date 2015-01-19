@@ -1,0 +1,69 @@
+League: {{ league.leagueCaption}} Matchday: {{ league.matchday}}
+
+<table class="standings" >
+  <thead>
+    <tr>
+      <th></th>
+      <th>Team</th>
+      <th>Played</th>
+      <th>Points</th>
+      <th>Goals</th>
+      <th>Goals Against</th>
+      <th>Goals Diff</th>
+      <th>Form</th>
+      <th>Upcoming</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="st in league.standing">
+      <td>{{ st.position }}</td>
+      <td>{{ st.teamName }}</td>
+      <td>{{ st.playedGames }}</td>
+      <td>{{ st.points }}</td>
+      <td>{{ st.goals }}</td>
+      <td>-{{ st.goalsAgainst }}</td>
+      <td>{{ st.goalDifference }}</td>
+      <td>
+        <ul class='teamform'>
+          <li ng-repeat="f in st.fixtures" title="{{ f.desc }}">
+            <span ng-show="f.homeTeamName == st.teamName" class='{{ f.home.result }}'>{{ f.home.result | limitTo:1 | uppercase }}</span>
+            <span ng-show="f.awayTeamName == st.teamName" class='{{ f.away.result }}'>{{ f.away.result | limitTo:1 | uppercase }}</span>
+          </li>
+        </ul>
+      </td>
+      <td>
+        <ul class='teamform'>
+          <li ng-repeat="f in st.fixtures | filter:{'upcoming':true} | limitTo:4" title="{{ f.desc }}">
+            <span ng-show="f.homeTeamName == st.teamName">{{ f.awayTeamName }}, </span>
+            <span ng-show="f.awayTeamName == st.teamName">{{ f.homeTeamName }}, </span>
+          </li>
+        </li>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<strong>Fixtures and Scores</strong>
+
+<table class="fixtures" >
+  <thead>
+    <tr>
+      <th></th>
+      <th>date</th>
+      <th>home</th>
+      <th>home score</th>
+      <th>away score</th>
+      <th>away</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="f in fixtures">
+      <td>{{ f.matchday }}</td>
+      <td>{{ f.date | date:'short' }}</td>
+      <td>{{ f.homeTeamName }}</td>
+      <td><span ng-show="f.result.goalsHomeTeam > -1">{{ f.result.goalsHomeTeam }}</span></td>
+      <td><span ng-show="f.result.goalsAwayTeam > -1">{{ f.result.goalsAwayTeam }}</span></td>
+      <td><span>{{ f.awayTeamName }}</span></td>
+    </tr>
+  </tbody>
+</table>
