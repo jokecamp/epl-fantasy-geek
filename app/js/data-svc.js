@@ -88,6 +88,17 @@ angular.module('myApp.services', [])
       });
     };
 
+    var getTeams = function(){
+      return $http.get('js/teams.json').then(function(res){
+        return res.data;
+      });
+    };
+
+    var getFixtures = function(){
+      return $http.get('js/fixtures.json').then(function(res){
+        return res.data;
+      });
+    };
 
     return {
       getJson: getJson,
@@ -96,7 +107,9 @@ angular.module('myApp.services', [])
       teams: getTeams,
       roster: getRoster,
       stats: getStatColumns,
-      twitter: function() { return handles; }
+      twitter: function() { return handles; },
+      getTeams: getTeams,
+      getFixtures: getFixtures
     };
 
 }]);

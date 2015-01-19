@@ -11,5 +11,6 @@ angular.module('myApp', [
 ]).
 config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/players', {templateUrl: 'partials/players.html', controller: 'playersCtrl'});
+  $routeProvider.when('/teams', {templateUrl: 'partials/teams.html', controller: 'teamsCtrl'});
   $routeProvider.otherwise({redirectTo: '/players'});
 }]);

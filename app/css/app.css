@@ -85,3 +85,11 @@ tr:nth-child(even) { background: #EEE; }
 .MUN { color: #BF1313; }
 .MCI { color: #6FF2EA; }
 .BUR { color: #943B3B}
+
+.win { color:green; }
+.loss { color:#990000; }
+.draw { color:gray; }
+
+.win, .loss, .draw { font-family: 'Courier New'; font-size:16px; font-weight:bold; }
+.teamform { margin:0; padding:0; }
+.teamform li { padding:0; margin:0; display:inline; }
