@@ -5,7 +5,7 @@
 angular.module('myApp.controllers')
   .controller('teamsCtrl', ['$scope', 'Data', function($scope, data) {
 
-    data.getTeamsFromApi().then(function(d) {
+    data.getLeagueTable().then(function(d) {
       $scope.league = d;
 
       data.getFixtures().then(function(items) {
