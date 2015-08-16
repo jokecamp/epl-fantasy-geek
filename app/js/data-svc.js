@@ -96,7 +96,7 @@ angular.module('myApp.services', [])
     };
 
     var getFixtures = function(){
-      var alt = 'http://api.football-data.org/alpha/teams/66/fixtures';
+      // http://api.football-data.org/alpha/teams/66/fixtures 
       return $http.get('js/fixtures.json').then(function(res){
         return res.data;
       });
