@@ -88,14 +88,15 @@ angular.module('myApp.services', [])
       });
     };
 
-    var getTeams = function(){
+
+    var getTeamsFromApi = function(){
       return $http.get('js/teams.json').then(function(res){
         return res.data;
       });
     };
 
     var getFixtures = function(){
-      return $http.get('js/fixtures.json').then(function(res){
+      return $http.get('http://api.football-data.org/alpha/teams/66/fixtures').then(function(res){
         return res.data;
       });
     };
@@ -105,6 +106,7 @@ angular.module('myApp.services', [])
       getCleanData: getCleanData,
       players: getPlayers,
       teams: getTeams,
+      getTeamsFromApi: getTeamsFromApi,
       roster: getRoster,
       stats: getStatColumns,
       twitter: function() { return handles; },
