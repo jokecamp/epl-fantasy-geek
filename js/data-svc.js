@@ -96,13 +96,21 @@ angular.module('myApp.services', [])
     };
 
     var getFixtures = function(){
-      // http://api.football-data.org/alpha/teams/66/fixtures 
+      // http://api.football-data.org/alpha/teams/66/fixtures
       return $http.get('js/fixtures.json').then(function(res){
         return res.data;
       });
     };
 
+    var getMeta = function(){
+      // http://api.football-data.org/alpha/teams/66/fixtures
+      return $http.get('js/meta.json').then(function(res){
+        return res.data;
+      });
+    };
+
     return {
+      getMeta: getMeta,
       getJson: getJson,
       getCleanData: getCleanData,
       players: getPlayers,
