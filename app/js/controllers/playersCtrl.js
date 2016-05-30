@@ -78,6 +78,10 @@ angular.module('myApp.controllers', [])
       }
     };
 
+    data.getMeta().then(function(resp) {
+        vm.lastUpdated = resp.date;
+    });
+
     data.getJson().then(function(resp) {
 
       $scope.teams = data.teams(resp);
