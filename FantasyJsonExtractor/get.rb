@@ -32,3 +32,16 @@ fp = File.new(ARGV[3], "w")
 fp.write(page.body)
 # put to console to make the user feel good
 puts page.body
+
+
+$i = 1;
+while $i < 39  do
+
+    $path = "../data/events/event" + $i.to_s + ".json"
+    puts "downloading event " + $i.to_s + " to " + $path
+    page = agent.get "https://fantasy.premierleague.com/drf/fixtures/?event=" + $i.to_s
+    fp = File.new($path, "w")
+    fp.write(page.body)
+
+    $i +=1
+end

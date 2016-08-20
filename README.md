@@ -43,3 +43,5 @@ In a shell scrip run the following with your own Fantasy Premier League Credenti
 - <https://help.github.com/articles/creating-project-pages-manually>
 - <https://fantasy.premierleague.com/drf/bootstrap-static> - once logged in you can access data here
 - <https://fantasy.premierleague.com/drf/bootstrap-dynamic> - once logged in you can access player/stats data here
+- <https://fantasy.premierleague.com/drf/elements/> - once logged in
+- <https://fantasy.premierleague.com/drf/transfers> - logged in user's fantasy team roster
