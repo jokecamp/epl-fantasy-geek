@@ -31,7 +31,7 @@
     <div class="form-group">
       <a ng-click="reset()" class='btn btn-default'>Reset Filters</a>
       <a ng-click="clearPins()" class='btn btn-default'>Removed Pinned Players</a>
-      <a href="js/data.json" class="btn btn-default"><i class="fa fa-cloud-download"></i> download raw JSON</a>
+      <a href="js/static-data.json" class="btn btn-default"><i class="fa fa-cloud-download"></i> download raw JSON</a>
     </div>
   </form>
 </div>
@@ -77,7 +77,7 @@
       <th ng-class="highlight('yellow_cards')"><a href='' ng-click="sortByColumn('-yellow_cards');" >Yellows</a></th>
       <th ng-class="highlight('penalties_missed')"><a href='' ng-click="sortByColumn('-penalties_missed');" >Pen Miss</a></th>
       <th ng-class="highlight('own_goals')"><a href='' ng-click="sortByColumn('-own_goals');" >Own Goals</a></th>
-      <th ng-class="highlight('selected')"><a href='' ng-click="sortByColumn('-selected');" >Selected</a></th>
+      <th ng-class="highlight('selected_by_percent')"><a href='' ng-click="sortByColumn('-selected_by_percent');" >Selected %</a></th>
       <th ng-class="highlight('transfers_in_event')"><a href='' ng-click="sortByColumn('-transfers_in_event');" >Tansfers in</a></th>
       <th ng-class="highlight('transfers_out_event')"><a href='' ng-click="sortByColumn('-transfers_out_event');" >Tansfers out</a></th>
       <th ng-class="highlight('transfer_diff')"><a href='' ng-click="sortByColumn('-transfer_diff');" >Tansfers Diff</a></th>
@@ -119,7 +119,7 @@
       <td class='center'>{{ p.yellow_cards | n }}</td>
       <td class='center'>{{ p.penalties_missed | n }}</td>
       <td class='center'>{{ p.own_goals | n }}</td>
-      <td class='right'>{{ p.selected | n | number}}</td>
+      <td class='right'>{{ p.selected_by_percent }} %</td>
       <td class='right'>{{ p.transfers_in_event | number }}</td>
       <td class='right'>{{ p.transfers_out_event | number }}</td>
       <td class='right {{ p.transfer_diff | movement }}'>{{ p.transfer_diff | number }}</td>

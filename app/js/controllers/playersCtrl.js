@@ -79,19 +79,19 @@ angular.module('myApp.controllers', [])
     };
 
     data.getMeta().then(function(resp) {
-        vm.lastUpdated = resp.date;
+        $scope.lastUpdated = resp.date;
     });
 
     data.getJson().then(function(resp) {
 
       $scope.teams = data.teams(resp);
       $scope.roster = data.roster(resp);
-      $scope.stat = data.stats(resp);
+      //$scope.stat = data.stats(resp);
       $scope.allPlayers = data.players(resp);
 
       $scope.columns = ['web_name', 'team'];
 
-      data.getCleanData($scope.allPlayers, $scope.teams, $scope.stat).then(function(items) {
+      data.getCleanData($scope.allPlayers, $scope.teams).then(function(items) {
         $scope.players = items;
         //console.log(JSON.stringify($scope.players));
       });
