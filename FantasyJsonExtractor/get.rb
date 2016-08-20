@@ -6,25 +6,29 @@ agent = Mechanize.new
 # additionally configure logger
 agent.log = Logger.new "mechanize.log"
 
-page  = agent.get "https://users.premierleague.com/PremierUser/account/login.html"
+agent.agent.http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+page  = agent.get "https://fantasy.premierleague.com/"
 
 ARGV.each do|a|
   puts "Argument: #{a}"
 end
 
 # Fill out the login form
-form  = page.form_with :id => 'login_form'
-form['j_username']    = ARGV[0]
-form['j_password']    = ARGV[1]
+form  = page.form_with :class => 'ism-form ism-form--login'
+form['ismjs-username']    = ARGV[0]
+form['ismjs-password']    = ARGV[1]
 form.submit
 
-page = agent.get 'http://fantasy.premierleague.com/transfers/'
-
-# $("#ismJson script").text()
-div = page.at '#ismJson'
-
+page = agent.get 'https://fantasy.premierleague.com/drf/bootstrap-static'
 fp = File.new(ARGV[2], "w")
-fp.write(div.text.strip)
-
+fp.write(page.body)
 # put to console to make the user feel good
-puts div.text.strip
+puts page.body
+
+
+page = agent.get 'https://fantasy.premierleague.com/drf/bootstrap-dynamic'
+fp = File.new(ARGV[3], "w")
+fp.write(page.body)
+# put to console to make the user feel good
+puts page.body

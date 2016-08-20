@@ -41,3 +41,5 @@ In a shell scrip run the following with your own Fantasy Premier League Credenti
 ### Resources
 
 - <https://help.github.com/articles/creating-project-pages-manually>
+- <https://fantasy.premierleague.com/drf/bootstrap-static> - once logged in you can access data here
+- <https://fantasy.premierleague.com/drf/bootstrap-dynamic> - once logged in you can access player/stats data here
